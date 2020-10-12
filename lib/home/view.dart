@@ -89,12 +89,12 @@ Widget _homeWidget2() {
     onRefresh: () async {
       _dispatch(HomeActionCreator.loadArticle((loadSuccess, noMore) {
         _homeState.controller.resetLoadState();
-        _homeState.controller.finishRefresh();
+        _homeState.controller.finishRefresh(success:loadSuccess,noMore:noMore);
       }));
     },
     onLoad: () async {
       _dispatch(HomeActionCreator.loadMoreArticle((loadSuccess, noMore) {
-        _homeState.controller.finishLoad(noMore: noMore);
+        _homeState.controller.finishLoad(success:loadSuccess,noMore:noMore);
       }));
     },
   );
