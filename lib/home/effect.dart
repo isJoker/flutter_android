@@ -53,7 +53,7 @@ List<Widget> _getImageList(Context<HomeState> ctx) {
 void _getArticleData(Action action, Context<HomeState> ctx) async {
   println("请求首页文章列表数据");
   LoadMoreCallback callback = action.payload;
-  ctx.state.articleIndex = 0;
+  ctx.state.pageNo = 0;
   try {
     List<ArticleItemState> tempList = await getArticle(ctx);
     ctx.state.articleList = tempList;
@@ -72,16 +72,16 @@ void _getArticleData(Action action, Context<HomeState> ctx) async {
 void _loadMoreArticleData(Action action, Context<HomeState> ctx) async {
   println("请求首页文章列表更多数据");
   LoadMoreCallback callback = action.payload;
-  ctx.state.articleIndex += 1;
+  ctx.state.pageNo += 1;
   try {
     List<ArticleItemState> tempList = await getArticle(ctx);
     ctx.state.articleList.addAll(tempList);
     ctx.dispatch(HomeActionCreator.updateArticleItem(ctx.state.articleList));
     if(callback != null){
-      callback.call(true, false);
+      callback.call(true, tempList.length == 0);
     }
   } catch (e) {
-    ctx.state.articleIndex -= 1;
+    ctx.state.pageNo -= 1;
     if(callback != null){
       callback.call(false, false);
     }
@@ -91,7 +91,7 @@ void _loadMoreArticleData(Action action, Context<HomeState> ctx) async {
 
 Future<List<ArticleItemState>> getArticle(Context<HomeState> ctx) async {
   Response response = await Dio()
-      .get(HomeApi.GET_HOME_ARTICLE + "${ctx.state.articleIndex}/json");
+      .get(HomeApi.GET_HOME_ARTICLE + "${ctx.state.pageNo}/json");
   HomeArticleEntity articleEntity =
       HomeArticleEntity().fromJson(json.decode(response.toString()));
   List<HomeArticleData> articleItems = articleEntity.data.datas;
@@ -103,8 +103,8 @@ Future<List<ArticleItemState>> getArticle(Context<HomeState> ctx) async {
 
 void _openBannerContent(Action action, Context<HomeState> ctx) {
   int index = action.payload;
-  ArticleDetailBean articleDetailBean = ArticleDetailBean();
+  WebPageBean articleDetailBean = WebPageBean();
   articleDetailBean.title = ctx.state.banners[index].title;
   articleDetailBean.url = ctx.state.banners[index].url;
-  Navigator.of(ctx.context).pushNamed("web", arguments: {"articleDetail": articleDetailBean});
+  Navigator.of(ctx.context).pushNamed("web", arguments: {"params": articleDetailBean});
 }

@@ -15,11 +15,11 @@ Effect<ArticleItemState> buildEffect() {
 void _onOpenArticleContent(Action action, Context<ArticleItemState> ctx) {
 
   HomeArticleData homeArticleData = action.payload;
-  ArticleDetailBean articleDetailBean = ArticleDetailBean();
+  WebPageBean articleDetailBean = WebPageBean();
   articleDetailBean.url = homeArticleData.link;
   articleDetailBean.title = homeArticleData.title;
 
-  Navigator.of(ctx.context).pushNamed("web",arguments: {"articleDetail": articleDetailBean});
+  Navigator.of(ctx.context).pushNamed("web",arguments: {"params": articleDetailBean});
 }
 
 void _onCollectArticle(Action action, Context<ArticleItemState> ctx) {

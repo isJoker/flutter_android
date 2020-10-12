@@ -36,7 +36,7 @@ Widget _itemContentWidget(ArticleItemState state, Dispatch dispatch) {
           children: <Widget>[
             Container(
               child: Text(
-                  '作者: ${state.itemData.shareUser == "" ? "未知" : state.itemData.shareUser}'),
+                  '作者: ${state.itemData.author == "" ? state.itemData.shareUser : state.itemData.author}'),
             ),
             Container(
               alignment: Alignment.centerRight,

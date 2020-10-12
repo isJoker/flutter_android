@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_android/collect/page.dart';
 import 'package:flutter_android/home/page.dart';
+import 'package:flutter_android/project/page.dart';
 
 class MainState implements Cloneable<MainState> {
   int selectedIndex = 0; //底部导航栏tab标识
@@ -20,7 +20,7 @@ MainState initState(Map<String, dynamic> args) {
   mainState.selectedIndex = 0;
   mainState.tabPage = [
     HomePage().buildPage(null),
-    CollectPage().buildPage(null),
+    ProjectPage().buildPage(null),
     HomePage().buildPage(null),
     HomePage().buildPage(null),
   ];

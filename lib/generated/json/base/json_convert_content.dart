@@ -7,6 +7,10 @@ import 'package:flutter_android/home/bean/home_article_entity.dart';
 import 'package:flutter_android/generated/json/home_article_entity_helper.dart';
 import 'package:flutter_android/home/bean/banner_entity.dart';
 import 'package:flutter_android/generated/json/banner_entity_helper.dart';
+import 'package:flutter_android/project/bean/project_tab_entity.dart';
+import 'package:flutter_android/generated/json/project_tab_entity_helper.dart';
+import 'package:flutter_android/project/bean/project_detail_entity.dart';
+import 'package:flutter_android/generated/json/project_detail_entity_helper.dart';
 
 class JsonConvert<T> {
 	T fromJson(Map<String, dynamic> json) {
@@ -20,41 +24,65 @@ class JsonConvert<T> {
   static _getFromJson<T>(Type type, data, json) {
     switch (type) {			case HomeArticleEntity:
 			return homeArticleEntityFromJson(data as HomeArticleEntity, json) as T;			case HomeArticleDataList:
-			return homeArticleDataFromJson(data as HomeArticleDataList, json) as T;			case HomeArticleData:
-			return homeArticleDataDataFromJson(data as HomeArticleData, json) as T;			case BannerEntity:
+			return homeArticleDataListFromJson(data as HomeArticleDataList, json) as T;			case HomeArticleData:
+			return homeArticleDataFromJson(data as HomeArticleData, json) as T;			case BannerEntity:
 			return bannerEntityFromJson(data as BannerEntity, json) as T;			case BannerData:
-			return bannerDataFromJson(data as BannerData, json) as T;    }
+			return bannerDataFromJson(data as BannerData, json) as T;			case ProjectTabEntity:
+			return projectTabEntityFromJson(data as ProjectTabEntity, json) as T;			case ProjectTabData:
+			return projectTabDataFromJson(data as ProjectTabData, json) as T;			case ProjectDetailEntity:
+			return projectDetailEntityFromJson(data as ProjectDetailEntity, json) as T;			case ProjectDetailData:
+			return projectDetailDataFromJson(data as ProjectDetailData, json) as T;			case ProjectDetailItemData:
+			return projectDetailDataDataFromJson(data as ProjectDetailItemData, json) as T;			case ProjectDetailTag:
+			return projectDetailDataDatasTagFromJson(data as ProjectDetailTag, json) as T;    }
     return data as T;
   }
 
   static _getToJson<T>(Type type, data) {
 		switch (type) {			case HomeArticleEntity:
 			return homeArticleEntityToJson(data as HomeArticleEntity);			case HomeArticleDataList:
-			return homeArticleDataToJson(data as HomeArticleDataList);			case HomeArticleData:
-			return homeArticleDataDataToJson(data as HomeArticleData);			case BannerEntity:
+			return homeArticleDataListToJson(data as HomeArticleDataList);			case HomeArticleData:
+			return homeArticleDataToJson(data as HomeArticleData);			case BannerEntity:
 			return bannerEntityToJson(data as BannerEntity);			case BannerData:
-			return bannerDataToJson(data as BannerData);    }
+			return bannerDataToJson(data as BannerData);			case ProjectTabEntity:
+			return projectTabEntityToJson(data as ProjectTabEntity);			case ProjectTabData:
+			return projectTabDataToJson(data as ProjectTabData);			case ProjectDetailEntity:
+			return projectDetailEntityToJson(data as ProjectDetailEntity);			case ProjectDetailData:
+			return projectDetailDataToJson(data as ProjectDetailData);			case ProjectDetailItemData:
+			return projectDetailDataDataToJson(data as ProjectDetailItemData);			case ProjectDetailTag:
+			return projectDetailDataDatasTagToJson(data as ProjectDetailTag);    }
     return data as T;
   }
   //Go back to a single instance by type
   static _fromJsonSingle(String type, json) {
     switch (type) {			case 'HomeArticleEntity':
-			return HomeArticleEntity().fromJson(json);			case 'HomeArticleData':
-			return HomeArticleDataList().fromJson(json);			case 'HomeArticleDataData':
+			return HomeArticleEntity().fromJson(json);			case 'HomeArticleDataList':
+			return HomeArticleDataList().fromJson(json);			case 'HomeArticleData':
 			return HomeArticleData().fromJson(json);			case 'BannerEntity':
 			return BannerEntity().fromJson(json);			case 'BannerData':
-			return BannerData().fromJson(json);    }
+			return BannerData().fromJson(json);			case 'ProjectTabEntity':
+			return ProjectTabEntity().fromJson(json);			case 'ProjectTabData':
+			return ProjectTabData().fromJson(json);			case 'ProjectDetailEntity':
+			return ProjectDetailEntity().fromJson(json);			case 'ProjectDetailData':
+			return ProjectDetailData().fromJson(json);			case 'ProjectDetailDataData':
+			return ProjectDetailItemData().fromJson(json);			case 'ProjectDetailDataDatasTag':
+			return ProjectDetailTag().fromJson(json);    }
     return null;
   }
 
   //empty list is returned by type
   static _getListFromType(String type) {
     switch (type) {			case 'HomeArticleEntity':
-			return List<HomeArticleEntity>();			case 'HomeArticleData':
-			return List<HomeArticleDataList>();			case 'HomeArticleDataData':
+			return List<HomeArticleEntity>();			case 'HomeArticleDataList':
+			return List<HomeArticleDataList>();			case 'HomeArticleData':
 			return List<HomeArticleData>();			case 'BannerEntity':
 			return List<BannerEntity>();			case 'BannerData':
-			return List<BannerData>();    }
+			return List<BannerData>();			case 'ProjectTabEntity':
+			return List<ProjectTabEntity>();			case 'ProjectTabData':
+			return List<ProjectTabData>();			case 'ProjectDetailEntity':
+			return List<ProjectDetailEntity>();			case 'ProjectDetailData':
+			return List<ProjectDetailData>();			case 'ProjectDetailDataData':
+			return List<ProjectDetailItemData>();			case 'ProjectDetailDataDatasTag':
+			return List<ProjectDetailTag>();    }
     return null;
   }
 

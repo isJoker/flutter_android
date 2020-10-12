@@ -1,8 +1,8 @@
-import 'package:flutter_android/home/bean/home_article_entity.dart';
+import 'package:flutter_android/project/bean/project_detail_entity.dart';
 
-homeArticleEntityFromJson(HomeArticleEntity data, Map<String, dynamic> json) {
+projectDetailEntityFromJson(ProjectDetailEntity data, Map<String, dynamic> json) {
 	if (json['data'] != null) {
-		data.data = new HomeArticleDataList().fromJson(json['data']);
+		data.data = new ProjectDetailData().fromJson(json['data']);
 	}
 	if (json['errorCode'] != null) {
 		data.errorCode = json['errorCode']?.toInt();
@@ -13,7 +13,7 @@ homeArticleEntityFromJson(HomeArticleEntity data, Map<String, dynamic> json) {
 	return data;
 }
 
-Map<String, dynamic> homeArticleEntityToJson(HomeArticleEntity entity) {
+Map<String, dynamic> projectDetailEntityToJson(ProjectDetailEntity entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	if (entity.data != null) {
 		data['data'] = entity.data.toJson();
@@ -23,14 +23,14 @@ Map<String, dynamic> homeArticleEntityToJson(HomeArticleEntity entity) {
 	return data;
 }
 
-homeArticleDataListFromJson(HomeArticleDataList data, Map<String, dynamic> json) {
+projectDetailDataFromJson(ProjectDetailData data, Map<String, dynamic> json) {
 	if (json['curPage'] != null) {
 		data.curPage = json['curPage']?.toInt();
 	}
 	if (json['datas'] != null) {
-		data.datas = new List<HomeArticleData>();
+		data.datas = new List<ProjectDetailItemData>();
 		(json['datas'] as List).forEach((v) {
-			data.datas.add(new HomeArticleData().fromJson(v));
+			data.datas.add(new ProjectDetailItemData().fromJson(v));
 		});
 	}
 	if (json['offset'] != null) {
@@ -51,7 +51,7 @@ homeArticleDataListFromJson(HomeArticleDataList data, Map<String, dynamic> json)
 	return data;
 }
 
-Map<String, dynamic> homeArticleDataListToJson(HomeArticleDataList entity) {
+Map<String, dynamic> projectDetailDataToJson(ProjectDetailData entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['curPage'] = entity.curPage;
 	if (entity.datas != null) {
@@ -65,7 +65,7 @@ Map<String, dynamic> homeArticleDataListToJson(HomeArticleDataList entity) {
 	return data;
 }
 
-homeArticleDataFromJson(HomeArticleData data, Map<String, dynamic> json) {
+projectDetailDataDataFromJson(ProjectDetailItemData data, Map<String, dynamic> json) {
 	if (json['apkLink'] != null) {
 		data.apkLink = json['apkLink']?.toString();
 	}
@@ -145,8 +145,10 @@ homeArticleDataFromJson(HomeArticleData data, Map<String, dynamic> json) {
 		data.superChapterName = json['superChapterName']?.toString();
 	}
 	if (json['tags'] != null) {
-		data.tags = new List<dynamic>();
-		data.tags.addAll(json['tags']);
+		data.tags = new List<ProjectDetailTag>();
+		(json['tags'] as List).forEach((v) {
+			data.tags.add(new ProjectDetailTag().fromJson(v));
+		});
 	}
 	if (json['title'] != null) {
 		data.title = json['title']?.toString();
@@ -166,7 +168,7 @@ homeArticleDataFromJson(HomeArticleData data, Map<String, dynamic> json) {
 	return data;
 }
 
-Map<String, dynamic> homeArticleDataToJson(HomeArticleData entity) {
+Map<String, dynamic> projectDetailDataDataToJson(ProjectDetailItemData entity) {
 	final Map<String, dynamic> data = new Map<String, dynamic>();
 	data['apkLink'] = entity.apkLink;
 	data['audit'] = entity.audit;
@@ -195,12 +197,29 @@ Map<String, dynamic> homeArticleDataToJson(HomeArticleData entity) {
 	data['superChapterId'] = entity.superChapterId;
 	data['superChapterName'] = entity.superChapterName;
 	if (entity.tags != null) {
-		data['tags'] =  [];
+		data['tags'] =  entity.tags.map((v) => v.toJson()).toList();
 	}
 	data['title'] = entity.title;
 	data['type'] = entity.type;
 	data['userId'] = entity.userId;
 	data['visible'] = entity.visible;
 	data['zan'] = entity.zan;
+	return data;
+}
+
+projectDetailDataDatasTagFromJson(ProjectDetailTag data, Map<String, dynamic> json) {
+	if (json['name'] != null) {
+		data.name = json['name']?.toString();
+	}
+	if (json['url'] != null) {
+		data.url = json['url']?.toString();
+	}
+	return data;
+}
+
+Map<String, dynamic> projectDetailDataDatasTagToJson(ProjectDetailTag entity) {
+	final Map<String, dynamic> data = new Map<String, dynamic>();
+	data['name'] = entity.name;
+	data['url'] = entity.url;
 	return data;
 }

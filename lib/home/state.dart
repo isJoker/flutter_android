@@ -14,7 +14,7 @@ class HomeState extends MutableSource implements Cloneable<HomeState> {
 
   // 文章列表数据
   List<ArticleItemState> articleList; //item数据源
-  int articleIndex; //文章列表索引  处理分页逻辑
+  int pageNo; 
 
   // 刷新、加载控制器
   EasyRefreshController controller;
@@ -53,7 +53,7 @@ HomeState initState(Map<String, dynamic> args) {
     ..banners = List()
     ..bannerImages = List()
     ..articleList = List()
-    ..articleIndex = 0
+    ..pageNo = 0
     ..bannerIndex = 0
     ..controller = EasyRefreshController();
 }

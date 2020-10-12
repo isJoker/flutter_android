@@ -2,7 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 
 import 'package:flutter/cupertino.dart' hide Page;
 import 'package:flutter/material.dart' hide Page;
-import 'package:flutter_android/collect/page.dart';
+import 'package:flutter_android/project/page.dart';
 import 'package:flutter_android/web/page.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 
@@ -20,6 +20,7 @@ Widget createApp() {
     pages: <String, Page<Object, dynamic>>{
       "main": MainPage(),
       "home": HomePage(),
+      "project": ProjectPage(),
       "web": WebPage(),
     },
   );

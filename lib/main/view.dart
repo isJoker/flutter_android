@@ -36,7 +36,7 @@ Widget _buildBottomNavigationBar() {
       type: BottomNavigationBarType.fixed,
       items: [
         BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("主页")),
-        BottomNavigationBarItem(icon: Icon(Icons.library_books), title: Text("收藏")),
+        BottomNavigationBarItem(icon: Icon(Icons.toys), title: Text("项目")),
         BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("主页")),
         BottomNavigationBarItem(icon: Icon(Icons.home), title: Text("主页")),
       ],

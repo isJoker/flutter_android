@@ -1,5 +1,5 @@
 
-class ArticleDetailBean {
+class WebPageBean {
   String title;
   String url;
 }

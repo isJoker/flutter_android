@@ -17,7 +17,7 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService viewService) {
   _homeState = state;
   _dispatch = dispatch;
   _viewService = viewService;
-  state.articleIndex = 0;
+  state.pageNo = 0;
   ScreenUtil.init(viewService.context, width: 750, height: 1334);
 
   return keepAliveWrapper(_homeWidget2());
@@ -68,7 +68,7 @@ Widget _homeWidget2() {
           SliverList(
             delegate: SliverChildListDelegate([
               Container(
-                height: setHeight(400),
+                height: setWidth(400),
                 child: Stack(
                   children: [
                     _bannerImage(),

@@ -5,18 +5,18 @@ import 'reducer.dart';
 import 'state.dart';
 import 'view.dart';
 
-class CollectPage extends Page<CollectState, Map<String, dynamic>> {
-  CollectPage()
+class ProjectPage extends Page<ProjectState, Map<String, dynamic>> {
+  ProjectPage()
       : super(
             initState: initState,
             effect: buildEffect(),
             reducer: buildReducer(),
             view: buildView,
-            dependencies: Dependencies<CollectState>(
+            dependencies: Dependencies<ProjectState>(
                 adapter: null,
-                slots: <String, Dependent<CollectState>>{
+                slots: <String, Dependent<ProjectState>>{
                 }),
-            middleware: <Middleware<CollectState>>[
+            middleware: <Middleware<ProjectState>>[
             ],);
 
 }
