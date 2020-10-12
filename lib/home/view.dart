@@ -50,6 +50,7 @@ Widget _homeWidget() {
   );
 }
 
+/// 更加灵活
 Widget _homeWidget2() {
   return EasyRefresh.builder(
     controller: _homeState.controller,
