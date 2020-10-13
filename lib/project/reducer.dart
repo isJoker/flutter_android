@@ -9,8 +9,20 @@ Reducer<ProjectState> buildReducer() {
   return asReducer(
     <Object, Reducer<ProjectState>>{
       ProjectAction.updateProjectTab: _onUpdateProjectList,
+      ProjectAction.updateBannerData: _onBannerData,
+      ProjectAction.updateBannerImage: _onBannerImage,
     },
   );
+}
+
+ProjectState _onBannerData(ProjectState state, Action action) {
+  return state.clone()
+    ..banners = action.payload;
+}
+
+ProjectState _onBannerImage(ProjectState state, Action action) {
+  return state.clone()
+    ..bannerImages = action.payload;
 }
 
 ProjectState _onUpdateProjectList(ProjectState state, Action action) {

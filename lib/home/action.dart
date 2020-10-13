@@ -3,7 +3,7 @@ import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_android/common/util/callback.dart';
 
 import 'article_item/state.dart';
-import 'bean/banner_entity.dart';
+import '../common/bean/banner_entity.dart';
 
 enum HomeAction {
   updateBannerData,

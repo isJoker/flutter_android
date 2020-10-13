@@ -17,11 +17,6 @@ Widget _buildBottomNavigationBar() {
   var _pageController = PageController();
 
   return Scaffold(
-    appBar: AppBar(
-      title: Text("玩Android"),
-      elevation: 0,
-    ),
-    drawer: _buildDrawer(),
     body: PageView.builder(
       itemBuilder: (context, index) => _mainState.tabPage[index],
       itemCount: _mainState.tabPage.length,
@@ -49,44 +44,4 @@ Widget _buildBottomNavigationBar() {
       },
     ),
   );
-}
-
-Widget _buildDrawer() {
-  return Drawer(
-    child: Column(
-      children: [
-        Container(
-          child: Image.asset("images/flutter.png"),
-        ),
-        Expanded(
-          child: ListView(
-            children: _buildDrawerItems(),
-          ),
-        ),
-      ],
-    ),
-  );
-}
-
-List<Widget> _buildDrawerItems() {
-  List<Widget> list = List();
-  var listTitle = ["我的收藏", "设置", "关于", "反馈"];
-  var listIcon = [
-    Icon(Icons.favorite),
-    Icon(Icons.settings),
-    Icon(Icons.code),
-    Icon(Icons.announcement)
-  ];
-  for (var i = 0; i < listTitle.length; i++) {
-    list.add(InkWell(
-      child: ListTile(
-        leading: listIcon[i],
-        title: Text(listTitle[i]),
-      ),
-      onTap: () {
-
-      },
-    ));
-  }
-  return list;
 }

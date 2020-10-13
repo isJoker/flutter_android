@@ -5,7 +5,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart' hide Action;
 import 'package:flutter_android/common/bean/article_detail_bean.dart';
 import 'package:flutter_android/home/api.dart';
-import 'package:flutter_android/home/bean/banner_entity.dart';
+import 'package:flutter_android/common/bean/banner_entity.dart';
 import 'package:flutter_android/common/util/callback.dart';
 import 'action.dart';
 import 'article_item/state.dart';

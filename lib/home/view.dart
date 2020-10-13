@@ -52,52 +52,59 @@ Widget _homeWidget() {
 
 /// 更加灵活
 Widget _homeWidget2() {
-  return EasyRefresh.builder(
-    controller: _homeState.controller,
-    header: TaurusHeader(
-      backgroundColor: Colors.green
+  return Scaffold(
+    appBar: AppBar(
+      title: Text("玩Android"),
+      elevation: 0,
     ),
-    footer: MaterialFooter(),
-    enableControlFinishLoad: true,
-    enableControlFinishRefresh: true,
-    builder: (context, physics, header, footer) {
-      return CustomScrollView(
-        physics: physics,
-        slivers: <Widget>[
-          header,
-          SliverList(
-            delegate: SliverChildListDelegate([
-              Container(
-                height: setWidth(400),
-                child: Stack(
-                  children: [
-                    _bannerImage(),
-                    _bannerText(),
-                  ],
+    drawer: _buildDrawer(),
+    body: EasyRefresh.builder(
+      controller: _homeState.controller,
+      header: TaurusHeader(
+          backgroundColor: Colors.green
+      ),
+      footer: MaterialFooter(),
+      enableControlFinishLoad: true,
+      enableControlFinishRefresh: true,
+      builder: (context, physics, header, footer) {
+        return CustomScrollView(
+          physics: physics,
+          slivers: <Widget>[
+            header,
+            SliverList(
+              delegate: SliverChildListDelegate([
+                Container(
+                  height: setWidth(400),
+                  child: Stack(
+                    children: [
+                      _bannerImage(),
+                      _bannerText(),
+                    ],
+                  ),
                 ),
-              ),
-            ]),
-          ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-                _viewService.buildAdapter().itemBuilder,
-                childCount: _viewService.buildAdapter().itemCount),
-          ),
-          footer,
-        ],
-      );
-    },
-    onRefresh: () async {
-      _dispatch(HomeActionCreator.loadArticle((loadSuccess, noMore) {
-        _homeState.controller.resetLoadState();
-        _homeState.controller.finishRefresh(success:loadSuccess,noMore:noMore);
-      }));
-    },
-    onLoad: () async {
-      _dispatch(HomeActionCreator.loadMoreArticle((loadSuccess, noMore) {
-        _homeState.controller.finishLoad(success:loadSuccess,noMore:noMore);
-      }));
-    },
+              ]),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                  _viewService.buildAdapter().itemBuilder,
+                  childCount: _viewService.buildAdapter().itemCount),
+            ),
+            footer,
+          ],
+        );
+      },
+      onRefresh: () async {
+        _dispatch(HomeActionCreator.loadArticle((loadSuccess, noMore) {
+          _homeState.controller.resetLoadState();
+          _homeState.controller.finishRefresh(success:loadSuccess,noMore:noMore);
+        }));
+      },
+      onLoad: () async {
+        _dispatch(HomeActionCreator.loadMoreArticle((loadSuccess, noMore) {
+          _homeState.controller.finishLoad(success:loadSuccess,noMore:noMore);
+        }));
+      },
+    ),
   );
 }
 
@@ -118,7 +125,7 @@ Widget _articleWidget() {
 /// banner
 Widget _swiperView() {
   return Container(
-    height: setHeight(400),
+    height: setWidth(400),
     child: Stack(
       children: [
         _bannerImage(),
@@ -177,4 +184,44 @@ Widget _bannerImage() {
       _dispatch(HomeActionCreator.openBannerContent(index));
     },
   );
+}
+
+Widget _buildDrawer() {
+  return Drawer(
+    child: Column(
+      children: [
+        Container(
+          child: Image.asset("images/flutter.png"),
+        ),
+        Expanded(
+          child: ListView(
+            children: _buildDrawerItems(),
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+List<Widget> _buildDrawerItems() {
+  List<Widget> list = List();
+  var listTitle = ["我的收藏", "设置", "关于", "反馈"];
+  var listIcon = [
+    Icon(Icons.favorite),
+    Icon(Icons.settings),
+    Icon(Icons.code),
+    Icon(Icons.announcement)
+  ];
+  for (var i = 0; i < listTitle.length; i++) {
+    list.add(InkWell(
+      child: ListTile(
+        leading: listIcon[i],
+        title: Text(listTitle[i]),
+      ),
+      onTap: () {
+
+      },
+    ));
+  }
+  return list;
 }

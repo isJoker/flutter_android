@@ -4,7 +4,7 @@ import 'package:flutter_android/home/adapter.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 
 import 'article_item/state.dart';
-import 'bean/banner_entity.dart';
+import '../common/bean/banner_entity.dart';
 
 class HomeState extends MutableSource implements Cloneable<HomeState> {
   // banner 数据

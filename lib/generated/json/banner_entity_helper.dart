@@ -1,4 +1,4 @@
-import 'package:flutter_android/home/bean/banner_entity.dart';
+import 'package:flutter_android/common/bean/banner_entity.dart';
 
 bannerEntityFromJson(BannerEntity data, Map<String, dynamic> json) {
 	if (json['data'] != null) {
